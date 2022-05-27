@@ -5,12 +5,19 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
+import { ThemeProvider } from '@mui/material/styles'
+import { darkTheme } from './theme/theme'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <ThemeProvider theme={darkTheme}>
+          <App />
+        </ThemeProvider>
+      </Router>
     </Provider>
   </React.StrictMode>
 )

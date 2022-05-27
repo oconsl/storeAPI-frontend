@@ -1,7 +1,12 @@
+import { Routes, Route } from 'react-router-dom'
+import MainPage from './pages/MainPage/MainPage'
+
 const App = () => {
   return (
     <div className='App'>
-      <h1>Products</h1>
+      <Routes>
+        <Route path='/:page' element={<MainPage />} />
+      </Routes>
     </div>
   )
 }
