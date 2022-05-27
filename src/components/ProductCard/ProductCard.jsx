@@ -5,14 +5,31 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
+import { useDispatch } from 'react-redux'
+import { openEditModal } from '../../slices/modal'
+import { deleteProduct, getProducts } from '../../slices/products'
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch()
+
+  const handleEditClick = () => {
+    dispatch(openEditModal(product._id))
+  }
+
+  const handleDeleteClick = () => {
+    dispatch(
+      deleteProduct({
+        id: product._id
+      })
+    ).then(() => dispatch(getProducts()))
+  }
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component='img'
         alt='product'
-        height='140'
+        height='200'
         image={product.imageUrl}
       />
       <CardContent>
@@ -24,8 +41,12 @@ const ProductCard = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small'>Edit</Button>
-        <Button size='small'>Delete</Button>
+        <Button size='small' onClick={handleEditClick}>
+          Edit
+        </Button>
+        <Button size='small' onClick={handleDeleteClick}>
+          Delete
+        </Button>
       </CardActions>
     </Card>
   )

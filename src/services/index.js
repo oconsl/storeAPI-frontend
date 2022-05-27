@@ -27,11 +27,8 @@ export const putProductService = async ({ data, id }) => {
 }
 
 // DELETE PRODUCT
-export const deleteProductService = async ({ data, id }) => {
-  const response = await axios.delete(
-    `${process.env.REACT_APP_API_URL}/${id}`,
-    data
-  )
+export const deleteProductService = async ({ id }) => {
+  const response = await axios.delete(`${process.env.REACT_APP_API_URL}/${id}`)
 
   return response.data
 }

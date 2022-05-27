@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../slices/products'
 import Pagination from '@mui/material/Pagination'
 import ProductCard from '../ProductCard/ProductCard'
+import { Box } from '@mui/material'
 
 const ProductsView = () => {
   const [page, setPage] = useState(1)
@@ -44,12 +45,20 @@ const ProductsView = () => {
   }, [dispatch])
 
   return (
-    <div>
-      {productsArray.length !== 0 && productsGroups.length > 0
-        ? productsGroups[page - 1].map((product) => {
-            return <ProductCard key={product._id} product={product} />
-          })
-        : null}
+    <>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '1rem',
+          flexWrap: 'wrap'
+        }}
+      >
+        {productsArray.length !== 0 && productsGroups.length > 0
+          ? productsGroups[page - 1].map((product) => {
+              return <ProductCard key={product._id} product={product} />
+            })
+          : null}
+      </Box>
       <Pagination
         count={maxPage}
         onChange={handleChange}
@@ -57,7 +66,7 @@ const ProductsView = () => {
         shape='rounded'
         color={'primary'}
       />
-    </div>
+    </>
   )
 }
 

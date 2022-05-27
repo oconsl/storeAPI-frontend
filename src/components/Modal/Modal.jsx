@@ -1,4 +1,6 @@
 import React, { forwardRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { closeModal } from '../../slices/modal'
 import {
   Typography,
   Dialog,
@@ -8,20 +10,24 @@ import {
   Slide
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
+import ProductForm from '../ProductForm/ProductForm'
 
 const Transition = forwardRef((props, ref) => {
   return <Slide direction='up' ref={ref} {...props} />
 })
 
-const Modal = ({ setOpen, type = 'add' }) => {
+const Modal = () => {
+  const dispatch = useDispatch()
+  const modalInfo = useSelector((state) => state.modal)
+
   const handleClose = () => {
-    setOpen(() => false)
+    dispatch(closeModal())
   }
 
   return (
     <Dialog
       fullScreen
-      open={true}
+      open={modalInfo.open}
       onClose={handleClose}
       TransitionComponent={Transition}
     >
@@ -36,13 +42,13 @@ const Modal = ({ setOpen, type = 'add' }) => {
             <CloseIcon />
           </IconButton>
           <Typography variant='h6' component='div'>
-            {type === 'add'
+            {modalInfo.type === 'add'
               ? 'Fill the form to add new product'
               : 'Edit to save new information'}
           </Typography>
         </Toolbar>
       </AppBar>
-      {/* PRODUCT COMPONENT HERE */}
+      <ProductForm />
     </Dialog>
   )
 }

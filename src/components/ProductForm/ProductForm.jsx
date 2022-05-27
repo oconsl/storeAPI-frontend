@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CssBaseline,
   Box,
@@ -10,14 +10,20 @@ import {
   TextField,
   Typography
 } from '@mui/material'
+import { closeModal } from '../../slices/modal'
+import { useDispatch, useSelector } from 'react-redux'
 
-const ProductForm = ({ setOpen }) => {
+const ProductForm = () => {
   const [productData, setProductData] = useState({
     name: '',
     price: 0,
     description: '',
     imageUrl: ''
   })
+  const dispatch = useDispatch()
+  const selectedId = useSelector((state) => state.modal.selectedId)
+  const products = useSelector((state) => state.products.data)
+  const product = products.find((product) => product._id === selectedId)
 
   const handleProductDataChange = (key) => (event) => {
     setProductData((prev) => {
@@ -32,8 +38,21 @@ const ProductForm = ({ setOpen }) => {
     event.preventDefault()
 
     // SEND DATA HERE
-    setOpen(() => false)
+    dispatch(closeModal())
   }
+
+  useEffect(() => {
+    if (product) {
+      setProductData(() => {
+        return {
+          name: product.name,
+          price: product.price,
+          description: product.description,
+          imageUrl: product.imageUrl
+        }
+      })
+    }
+  }, [product])
 
   return (
     <Box component='main'>
@@ -59,6 +78,7 @@ const ProductForm = ({ setOpen }) => {
                   name='name'
                   id='name'
                   label='Product Name'
+                  value={productData.name}
                   onChange={handleProductDataChange('name')}
                 />
               </Grid>
@@ -71,6 +91,7 @@ const ProductForm = ({ setOpen }) => {
                   name='description'
                   id='description'
                   label='Description'
+                  value={productData.description}
                   onChange={handleProductDataChange('description')}
                 />
               </Grid>
@@ -79,10 +100,10 @@ const ProductForm = ({ setOpen }) => {
                   required
                   fullWidth
                   multiline
-                  rows={10}
                   name='price'
                   id='price'
                   label='Price'
+                  value={productData.price}
                   onChange={handleProductDataChange('price')}
                 />
               </Grid>
@@ -96,6 +117,7 @@ const ProductForm = ({ setOpen }) => {
                 name='image'
                 id='image'
                 label='Product Image URL'
+                value={productData.imageUrl}
                 onChange={handleProductDataChange('imageUrl')}
               />
               <Card>
@@ -111,7 +133,7 @@ const ProductForm = ({ setOpen }) => {
               </Card>
             </Box>
             <Button type='submit' fullWidth variant='contained'>
-              Add Product
+              Confirm
             </Button>
           </Box>
         </Box>
