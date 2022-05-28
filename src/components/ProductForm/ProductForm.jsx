@@ -43,6 +43,10 @@ const ProductForm = () => {
       dispatch(postProduct({ data: productData }))
         .then(() => dispatch(getProducts()))
         .then(() => dispatch(closeModal()))
+    } else {
+      dispatch(putProduct({ data: productData, id: product._id }))
+        .then(() => dispatch(getProducts()))
+        .then(() => dispatch(closeModal()))
     }
   }
 
