@@ -11,6 +11,7 @@ import {
   Typography
 } from '@mui/material'
 import { closeModal } from '../../slices/modal'
+import { postProduct, putProduct, getProducts } from '../../slices/products'
 import { useDispatch, useSelector } from 'react-redux'
 
 const ProductForm = () => {
@@ -21,6 +22,7 @@ const ProductForm = () => {
     imageUrl: ''
   })
   const dispatch = useDispatch()
+  const type = useSelector((state) => state.modal.type)
   const selectedId = useSelector((state) => state.modal.selectedId)
   const products = useSelector((state) => state.products.data)
   const product = products.find((product) => product._id === selectedId)
@@ -37,8 +39,11 @@ const ProductForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    // SEND DATA HERE
-    dispatch(closeModal())
+    if (type === 'add') {
+      dispatch(postProduct({ data: productData }))
+        .then(() => dispatch(getProducts()))
+        .then(() => dispatch(closeModal()))
+    }
   }
 
   useEffect(() => {
