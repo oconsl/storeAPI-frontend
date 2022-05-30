@@ -58,7 +58,7 @@ const ProductsView = () => {
         }}
       >
         {productsArray.length !== 0 && productsGroups.length > 0 ? (
-          productsGroups[page - 1].map((product, index) => {
+          productsArray.map((product, index) => {
             return (
               <ProductCard key={`${product.name}-${index}`} product={product} />
             )
