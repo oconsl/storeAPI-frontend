@@ -49,7 +49,11 @@ const ProductCard = ({ product }) => {
           <Typography gutterBottom variant='h5' component='div'>
             {product.name}
           </Typography>
-          <Typography>{`$ ${product.price}`}</Typography>
+          <Typography
+            gutterBottom
+            variant='h6'
+            component='div'
+          >{`$ ${product.price}`}</Typography>
         </Box>
         <Typography variant='body2' color='text.secondary'>
           {product.description}

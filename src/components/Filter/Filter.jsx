@@ -27,6 +27,12 @@ const Filter = () => {
     dispatch(filterProducts(filters))
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key !== 'Enter') return
+
+    dispatch(filterProducts(filters))
+  }
+
   return (
     <Box
       component='form'
@@ -48,11 +54,13 @@ const Filter = () => {
         label='Name'
         variant='outlined'
         onChange={handleFiltersChange('name')}
+        onKeyDown={handleKeyDown}
       />
       <TextField
         label='Description'
         variant='outlined'
         onChange={handleFiltersChange('description')}
+        onKeyDown={handleKeyDown}
       />
       <TextField
         label='Min Price'
@@ -62,6 +70,7 @@ const Filter = () => {
           min: 0
         }}
         onChange={handleFiltersChange('min')}
+        onKeyDown={handleKeyDown}
       />
       <TextField
         label='Max Price'
@@ -71,6 +80,7 @@ const Filter = () => {
           min: 0
         }}
         onChange={handleFiltersChange('max')}
+        onKeyDown={handleKeyDown}
       />
       <Button
         variant='contained'

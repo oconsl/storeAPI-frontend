@@ -174,31 +174,40 @@ const ProductForm = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   width: '100%',
-                  height: '100%',
+                  height: '480px',
                   backgroundColor: 'rgba(108, 108, 108, 0.2)',
                   borderRadius: '20px',
                   backdropFilter: 'blur(15px)'
                 }}
               >
-                <CardMedia
-                  component='img'
-                  alt='Product Image'
-                  image={productData.imageUrl || 'a'}
-                  title='Product Image'
-                  height='450'
+                <Box
                   sx={{
-                    padding: '1rem',
-                    width: '450px',
-                    aspectRatio: '1 / 1',
-                    objectFit: 'cover',
+                    backgroundColor: 'white',
+                    height: '100%',
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    borderRadius: '10px',
+                    overflow: 'hidden',
+                    margin: '1rem 0'
                   }}
-                  onError={(e) => {
-                    e.target.src = noImg
-                  }}
-                />
+                >
+                  <CardMedia
+                    component='img'
+                    alt='Product Image'
+                    image={productData.imageUrl || 'a'}
+                    title='Product Image'
+                    height='450'
+                    sx={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                      objectFit: 'contain'
+                    }}
+                    onError={(e) => {
+                      e.target.src = noImg
+                    }}
+                  />
+                </Box>
               </Card>
             </Box>
           </Box>
