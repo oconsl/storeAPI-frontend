@@ -1,0 +1,43 @@
+.form__main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: url('../../assets/Rect.svg')
+}
+
+.form__title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form__title h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.form__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  background-color: rgba(108, 108, 108, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(15px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form__box-left {
+  flex: 1;
+  align-self: stretch;
+}
+
+.form__box-right {
+  flex: 1
+}
+
+.form__submit {
+  margin-top: 1rem;
+}

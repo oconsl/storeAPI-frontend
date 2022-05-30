@@ -38,6 +38,7 @@ const Modal = () => {
             color='inherit'
             onClick={handleClose}
             aria-label='close'
+            sx={{ marginRight: '1rem', color: 'red' }}
           >
             <CloseIcon />
           </IconButton>

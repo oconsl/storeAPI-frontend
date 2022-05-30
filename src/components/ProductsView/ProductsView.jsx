@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProducts } from '../../slices/products'
+import { getProducts } from '../../slices/extraReducers'
 import Pagination from '@mui/material/Pagination'
 import ProductCard from '../ProductCard/ProductCard'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 const ProductsView = () => {
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
   const [productsGroups, setProductsGroups] = useState([[]])
   const dispatch = useDispatch()
-  const productsArray = useSelector((state) => state.products.data)
+  const productsArray = useSelector((state) => state.products.filteredData)
   const navigate = useNavigate()
 
   const handleChange = (_, value) => {
@@ -24,7 +24,7 @@ const ProductsView = () => {
       let i = 0
 
       while (i < productsArray.length) {
-        subArray.push(productsArray.slice(i, (i += 8)))
+        subArray.push(productsArray.slice(i, (i += 4)))
       }
 
       return subArray
@@ -49,15 +49,25 @@ const ProductsView = () => {
       <Box
         sx={{
           display: 'flex',
-          gap: '1rem',
-          flexWrap: 'wrap'
+          gap: '4rem',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexGrow: 1,
+          justifySelf: 'center'
         }}
       >
-        {productsArray.length !== 0 && productsGroups.length > 0
-          ? productsGroups[page - 1].map((product) => {
-              return <ProductCard key={product._id} product={product} />
-            })
-          : null}
+        {productsArray.length !== 0 && productsGroups.length > 0 ? (
+          productsGroups[page - 1].map((product, index) => {
+            return (
+              <ProductCard key={`${product.name}-${index}`} product={product} />
+            )
+          })
+        ) : (
+          <Box>
+            <Typography variant='h4'>No products found</Typography>
+          </Box>
+        )}
       </Box>
       <Pagination
         count={maxPage}

@@ -10,20 +10,28 @@ export const getProductsService = async () => {
 }
 
 // POST PRODUCT
-export const postProductService = async ({ data }) => {
-  const response = await axios.post(`${process.env.REACT_APP_API_URL}`, data)
+export const postProductService = async ({ data }, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}`, data)
 
-  return response.data
+    return response.data
+  } catch (err) {
+    return rejectWithValue(err.response.data)
+  }
 }
 
 // PUT PRODUCT
-export const putProductService = async ({ data, id }) => {
-  const response = await axios.put(
-    `${process.env.REACT_APP_API_URL}/${id}`,
-    data
-  )
+export const putProductService = async ({ data, id }, { rejectWithValue }) => {
+  try {
+    const response = await axios.put(
+      `${process.env.REACT_APP_API_URL}/${id}`,
+      data
+    )
 
-  return response.data
+    return response.data
+  } catch (err) {
+    return rejectWithValue(err.response.data)
+  }
 }
 
 // DELETE PRODUCT

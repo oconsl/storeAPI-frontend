@@ -12,8 +12,18 @@ const AddProductButton = () => {
   }
 
   return (
-    <Box>
-      <Button variant='contained' color='success' onClick={handleClick}>
+    <Box
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+    >
+      <Button
+        variant='contained'
+        color='success'
+        onClick={handleClick}
+        sx={{
+          width: '150px',
+          height: '50px'
+        }}
+      >
         ADD
       </Button>
     </Box>
