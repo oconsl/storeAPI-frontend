@@ -9,9 +9,9 @@ import { Box, Typography } from '@mui/material'
 const ProductsView = () => {
   const [page, setPage] = useState(1)
   const [maxPage, setMaxPage] = useState(1)
-  const [productsGroups, setProductsGroups] = useState([[]])
   const dispatch = useDispatch()
   const productsArray = useSelector((state) => state.products.filteredData)
+  const [productsGroups, setProductsGroups] = useState([[]])
   const navigate = useNavigate()
 
   const handleChange = (_, value) => {
@@ -58,7 +58,7 @@ const ProductsView = () => {
         }}
       >
         {productsArray.length !== 0 && productsGroups.length > 0 ? (
-          productsArray.map((product, index) => {
+          productsGroups[page - 1].map((product, index) => {
             return (
               <ProductCard key={`${product.name}-${index}`} product={product} />
             )

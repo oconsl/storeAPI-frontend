@@ -6,8 +6,6 @@ import axios from 'axios'
 export const getProductsService = async () => {
   const response = await axios.get(`${process.env.REACT_APP_API_URL}`)
 
-  console.log(response)
-
   return response.data
 }
 
