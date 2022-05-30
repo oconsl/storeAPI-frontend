@@ -1,10 +1,11 @@
 import axios from 'axios'
 
 // PRODUCTS SERVICES
+const API_URL = 'https://aenima-api-oconsl.herokuapp.com/api/products'
 
 // GET ALL PRODUCTS
 export const getProductsService = async () => {
-  const response = await axios.get(`${process.env.REACT_APP_API_URL}`)
+  const response = await axios.get(API_URL)
 
   return response.data
 }
@@ -12,7 +13,7 @@ export const getProductsService = async () => {
 // POST PRODUCT
 export const postProductService = async ({ data }, { rejectWithValue }) => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}`, data)
+    const response = await axios.post(API_URL, data)
 
     return response.data
   } catch (err) {
@@ -23,10 +24,7 @@ export const postProductService = async ({ data }, { rejectWithValue }) => {
 // PUT PRODUCT
 export const putProductService = async ({ data, id }, { rejectWithValue }) => {
   try {
-    const response = await axios.put(
-      `${process.env.REACT_APP_API_URL}/${id}`,
-      data
-    )
+    const response = await axios.put(`${API_URL}/${id}`, data)
 
     return response.data
   } catch (err) {
@@ -36,7 +34,7 @@ export const putProductService = async ({ data, id }, { rejectWithValue }) => {
 
 // DELETE PRODUCT
 export const deleteProductService = async ({ id }) => {
-  const response = await axios.delete(`${process.env.REACT_APP_API_URL}/${id}`)
+  const response = await axios.delete(`${API_URL}/${id}`)
 
   return response.data
 }
