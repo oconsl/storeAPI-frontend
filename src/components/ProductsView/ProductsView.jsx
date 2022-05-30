@@ -46,6 +46,13 @@ const ProductsView = () => {
 
   return (
     <>
+      <Pagination
+        count={maxPage}
+        onChange={handleChange}
+        variant='outlined'
+        shape='rounded'
+        color={'primary'}
+      />
       <Box
         sx={{
           display: 'flex',
@@ -53,7 +60,6 @@ const ProductsView = () => {
           flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'center',
-          flexGrow: 1,
           justifySelf: 'center'
         }}
       >
@@ -69,13 +75,6 @@ const ProductsView = () => {
           </Box>
         )}
       </Box>
-      <Pagination
-        count={maxPage}
-        onChange={handleChange}
-        variant='outlined'
-        shape='rounded'
-        color={'primary'}
-      />
     </>
   )
 }

@@ -184,6 +184,7 @@ const ProductForm = () => {
                   sx={{
                     backgroundColor: 'white',
                     height: '100%',
+                    width: '500px',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
