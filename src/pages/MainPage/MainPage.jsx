@@ -5,21 +5,17 @@ import ProductsView from '../../components/ProductsView/ProductsView'
 import { CssBaseline, Typography } from '@mui/material'
 import { Box } from '@mui/material'
 import Modal from '../../components/Modal/Modal'
-import DetailsModal from '../../components/DetailsModal/DetailsModal'
 import AddProductButton from '../../components/AddProductButton/AddProductButton'
 import { Toaster } from 'react-hot-toast'
 import './MainPage.css'
 
 const MainPage = () => {
   const modalOpen = useSelector((state) => state.modal.open)
-  const detailsModalOpen = useSelector((state) => state.modal.openDetails)
 
   return (
     <Box className='main'>
       <CssBaseline />
       {modalOpen && <Modal />}
-      {detailsModalOpen && <DetailsModal />}
-      {}
       <Typography variant='h2' component='h2' className='title'>
         Products
       </Typography>
