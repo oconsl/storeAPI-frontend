@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import { forwardRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { closeModal } from '../../slices/modal'
 import {

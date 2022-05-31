@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { TextField, Box, Button } from '@mui/material'
 import { filterProducts } from '../../slices/products'
-import TextField from '@mui/material/TextField'
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
 
 const Filter = () => {
   const [filters, setFilters] = useState({
